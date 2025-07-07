@@ -12,10 +12,9 @@ import {
 import { Bar, Pie } from "react-chartjs-2";
 import ChartCard from "./ChartCard";
 
-// Register all required components
 ChartJS.register(
-  ArcElement, // Required for Pie chart
-  BarElement, // Required for Bar chart
+  ArcElement,
+  BarElement,
   CategoryScale,
   LinearScale,
   Tooltip,
