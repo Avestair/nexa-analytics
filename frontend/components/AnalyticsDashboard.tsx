@@ -110,8 +110,32 @@ export default function AnalyticsDashboard({ data }: { data: AnalyticsData }) {
             </h2>
           </div>
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-border">
-              {/* ... existing table code ... */}
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3 text-left">User</th>
+                  <th className="px-6 py-3 text-left">Device</th>
+                  <th className="px-6 py-3 text-left">Location</th>
+                  <th className="px-6 py-3 text-left">Last Active</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {data.slice(0, 5).map((item) => (
+                  <tr key={item._id}>
+                    <td className="px-6 py-4">{item.userId}</td>
+                    <td className="px-6 py-4">
+                      {item.userAgent.device?.type || "Desktop"} (
+                      {item.userAgent.browser.name})
+                    </td>
+                    <td className="px-6 py-4">
+                      {item.location?.city}, {item.location?.country}
+                    </td>
+                    <td className="px-6 py-4">
+                      {item.pageViews[0]?.timeStamp}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
           </div>
           {data.length > 5 && (
