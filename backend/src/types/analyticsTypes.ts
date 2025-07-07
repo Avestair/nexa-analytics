@@ -8,11 +8,11 @@ export type ProductCartItem = {
 };
 
 export type UserAgent = {
-  fullData?: string;
-  browser?: {
-    name?: string;
-    version?: string;
-    major?: string;
+  fullData: string;
+  browser: {
+    name: string;
+    version: string;
+    major: string;
   };
   cpu?: {
     architecture?: string;
@@ -26,8 +26,8 @@ export type UserAgent = {
     name?: string;
     version?: string;
   };
-  os?: {
-    name?: string;
+  os: {
+    name: string;
     version?: string;
   };
 };
@@ -46,10 +46,10 @@ export type PageView = {
 };
 
 export type Location = {
-  country?: string;
-  region?: string;
-  city?: string;
-  timeZone?: string;
+  country: string;
+  region: string;
+  city: string;
+  timeZone: string;
   coordinates?: {
     x?: string;
     y?: string;

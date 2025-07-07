@@ -13,17 +13,29 @@ const analyticsSchema = new Schema<AnalyticsType>(
       trim: true,
     },
     userAgent: {
-      fullData: String,
+      fullData: {
+        type: String,
+        required: true,
+      },
       browser: {
-        name: String,
-        version: String,
-        major: String,
+        name: {
+          type: String,
+          required: true,
+        },
+        version: {
+          type: String,
+          required: true,
+        },
+        major: {
+          type: String,
+          required: true,
+        },
       },
       cpu: {
         architecture: String,
       },
       device: {
-        type: String,
+        type: { type: String },
         vendor: String,
         model: String,
       },
@@ -32,14 +44,17 @@ const analyticsSchema = new Schema<AnalyticsType>(
         version: String,
       },
       os: {
-        name: String,
+        name: {
+          type: String,
+          required: true,
+        },
         version: String,
       },
     },
     visitStatus: {
       firstVisit: String,
       totalTimeSpent: String,
-      isReturning: Boolean, //check the last visit with date.now to see if its over 1 month if its was set this field to true otherwise false
+      isReturning: Boolean,
       lastVisit: String,
     },
     pageViews: [
@@ -49,14 +64,26 @@ const analyticsSchema = new Schema<AnalyticsType>(
           type: Date,
           default: Date.now,
         },
-        timeSpent: Number, // in seconds
+        timeSpent: Number,
       },
     ],
     location: {
-      country: String,
-      region: String,
-      city: String,
-      timeZone: String,
+      country: {
+        type: String,
+        required: true,
+      },
+      region: {
+        type: String,
+        required: true,
+      },
+      city: {
+        type: String,
+        required: true,
+      },
+      timeZone: {
+        type: String,
+        required: true,
+      },
       coordinates: {
         x: String,
         y: String,
@@ -122,24 +149,23 @@ const analyticsSchema = new Schema<AnalyticsType>(
         },
       ],
     },
+    // marketingStuff: {
+    //   entryPage: String,
+    //   exitPage: String,
+    //   referrer: String,
+    //   isReturning: Boolean,
+    //   discountsUsed: [
+    //     {
+    //       discountCode: String,
+    //       discountAmount: Number,
+    //       isPercentage: Boolean,
+    //     },
+    //   ],
+    // },
   },
   {
     timestamps: true,
   }
-  // marketingStuff: {
-  //   entryPage: String,
-  //   exitPage: String,
-  //   referrer: String, // Where they came from
-  //   isReturning: Boolean,
-  //    discountsUsed: [
-  // {
-  //   discountCode: String,
-  //   discountAmount: Number,
-  //   isPercentage: Boolean,
-
-  // }
-  // ]
-  // },
 );
 
 const Analytics = model("Analytics", analyticsSchema);
